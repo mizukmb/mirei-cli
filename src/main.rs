@@ -1,15 +1,10 @@
 extern crate clap;
 use clap::{Arg, App};
 
-pub struct Ragulation {
-    content: &'static str,
-    episode: u16,
-    number: u16,
-    violator: &'static str,
-}
+mod regulation;
 
 fn main() {
-    let mirei = Ragulation{
+    let mirei = regulation::Regulation{
         content: "廊下を走ってはならない",
         episode: 1,
         number: 3243,
@@ -35,15 +30,5 @@ fn main() {
                         .help("Echo with violator"))
                     .get_matches();
 
-    if matches.is_present("number") {
-        println!("{}", mirei.number);
-    }
-    if matches.is_present("violator") {
-        println!("{}", mirei.violator);
-    }
-    if matches.is_present("episode") {
-        println!("{}", mirei.episode);
-    }
-
-    println!("{}", mirei.content);
+    println!("{}", mirei.echo());
 }
